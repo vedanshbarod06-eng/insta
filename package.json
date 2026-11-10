@@ -1,10 +1,10 @@
 {
-  "name": "orbit-social",
-  "version": "3.0.0",
-  "private": true,
-  "description": "Independent social interface prototype with public profile lookup and AI-assisted insights",
-  "main": "server.js",
-  "scripts": { "start": "node server.js" },
-  "dependencies": { "express": "^4.21.2" },
-  "engines": { "node": ">=18" }
+  "name":"orbit-social",
+  "version":"4.0.0",
+  "private":true,
+  "description":"Orbit Social independent social UI and editable analytics prototype",
+  "main":"server.js",
+  "scripts":{"start":"node server.js"},
+  "dependencies":{"express":"^4.21.2"},
+  "engines":{"node":">=18"}
 }

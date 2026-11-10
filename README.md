@@ -1,32 +1,30 @@
-# Orbit Social v3
+# Orbit Social v4
+Independent mobile-first PWA prototype. Not affiliated with Instagram or Google Play.
 
-Independent mobile-first PWA prototype. It uses an app-discovery entry screen, then a focused social interface.
-
-## Included
-- Home feed, Reels, Explore/public username lookup, Activity, Profile
-- Professional dashboard and individual Reel Insights tabs
-- API status for Apify, Gemini and optional Grok
-- Public profile/post lookup through an Apify actor
-- AI-generated insight commentary (clearly labelled as simulated/estimated)
-
-## Not included
-No DMs, Story creation, private-account access, Instagram login/session cookies, or private Instagram analytics. Public scraping does not provide reliable audience demographics or first-party Reel analytics.
+## Features
+- Store-style launch screen
+- Home, Reels, Explore/public profile import, Profile
+- Professional dashboard, Account Insights, Reel Insights (Overview / Engagement / Audience)
+- Manual metric editor for views, reach, likes, comments, shares, saves, watch time, follows, skip rate, follower splits, retention and top locations
+- Gemini/Grok metric generation, with generated values editable afterwards
+- API connection status
 
 ## Render
-- Build command: `npm install`
-- Start command: `npm start`
-- Runtime: Node
-- Root directory: leave blank
+Build: `npm install`
+Start: `npm start`
+Runtime: Node
+Root directory: blank
 
 ## Environment variables
-- `APIFY_TOKEN` required for public profile/post lookups
-- `APIFY_ACTOR_ID` optional; default `apify~instagram-scraper`
-- `GEMINI_API_KEY` optional for Gemini insights
-- `GEMINI_MODEL` optional; default `gemini-2.5-flash`
-- `XAI_API_KEY` optional for Grok
-- `XAI_MODEL` optional; default `grok-3-mini`
+`APIFY_TOKEN` (public profile/post import)
+`APIFY_ACTOR_ID` optional, default `apify~instagram-scraper`
+`GEMINI_API_KEY` (Gemini)
+`GEMINI_MODEL` optional, default `gemini-2.5-flash`
+`XAI_API_KEY` (Grok)
+`XAI_MODEL` optional, default `grok-3-mini`
 
-Set secrets in Render Environment, never in GitHub.
+Set keys only in Render Environment. Do not commit secrets.
+Apify actor input formats can vary; adjust `scrape()` in `server.js` if your selected actor expects a different input schema.
 
-## Important
-The Apify actor input schema can vary. If your selected actor uses a different input format, adjust `runApify()` in `server.js`. This is an independent prototype, not affiliated with Instagram or Google Play.
+## Data note
+Analytics are simulated/editable values. They are not represented as genuine Instagram-reported analytics. Public profile scraping cannot access private account data.
