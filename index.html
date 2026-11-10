@@ -1,13 +1,48 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#08090d"><meta name="description" content="Orbit Social public Instagram profile explorer and AI insights"><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg"><link rel="stylesheet" href="/style.css"><title>Orbit Social</title></head>
-<body><div class="app"><aside class="rail"><div class="brand">◉</div><button class="nav active" data-tab="home">⌂<span>Home</span></button><button class="nav" data-tab="explore">⌕<span>Explore</span></button><button class="nav" data-tab="reels">▣<span>Reels</span></button><button class="nav" data-tab="insights">⌁<span>Insights</span></button><div class="spacer"></div><button class="nav" data-tab="settings">⚙<span>Settings</span></button></aside>
-<main><header><div class="mobile-brand">◉ <b>orbit</b></div><div class="top-note">PUBLIC PROFILE EXPLORER <i></i></div><button id="installBtn" class="install hidden">Install app</button></header>
-<section class="hero"><div><div class="eyebrow">SOCIAL INTELLIGENCE / 01</div><h1>Explore Instagram<br><em>without the noise.</em></h1><p>Look up public profiles, inspect recent posts and turn available metrics into useful content insights.</p></div><div class="orb"><div class="orb-core">◎</div></div></section>
-<section class="search-panel"><div class="search-label">PUBLIC INSTAGRAM ACCOUNT</div><div class="search-row"><span>@</span><input id="username" placeholder="username" autocomplete="off" maxlength="30"><button id="loadBtn">Load profile <b>↗</b></button></div><div class="hint">No Instagram password or session cookie. Public data via your server-side Apify integration.</div></section>
-<div id="error" class="error hidden"></div>
-<section id="profile" class="profile hidden"><div class="profile-head"><img id="avatar" src="" alt=""/><div class="profile-title"><div class="handle" id="handle">@username</div><div id="fullname" class="muted"></div><p id="bio"></p></div><a id="openProfile" target="_blank" rel="noreferrer">Open on Instagram ↗</a></div><div class="stats"><div><b id="followers">—</b><span>Followers</span></div><div><b id="following">—</b><span>Following</span></div><div><b id="postCount">—</b><span>Posts</span></div></div></section>
-<section id="content" class="content hidden"><div class="section-head"><div><div class="eyebrow">CONTENT INTELLIGENCE / 02</div><h2>Recent posts</h2></div><button id="refreshPosts" class="ghost">Refresh ↻</button></div><div id="posts" class="post-grid"></div><div class="section-head insight-head"><div><div class="eyebrow">AI ANALYSIS / 03</div><h2>Make the data useful.</h2><p class="muted">Analyse the loaded public posts with Gemini, falling back to Grok.</p></div><button id="analyseBtn" class="primary">Generate insights ↗</button></div><div id="analysis" class="analysis hidden"></div></section>
-<section id="empty" class="empty"><div class="empty-mark">◎</div><h3>Your research starts here.</h3><p>Enter a public Instagram username to load profile details and recent posts.</p><div class="empty-chips"><span>PROFILE DATA</span><span>POST PERFORMANCE</span><span>AI INSIGHTS</span></div></section>
-<section id="settings" class="settings hidden"><div class="eyebrow">CONNECTION STATUS / 04</div><h2>Server integrations</h2><p class="muted">API keys belong in your hosting provider's environment variables, never in this browser.</p><div class="status-list"><div><span>Apify · public Instagram data</span><b id="apifyStatus">Checking…</b></div><div><span>Google Gemini · AI analysis</span><b id="geminiStatus">Checking…</b></div><div><span>xAI Grok · fallback analysis</span><b id="grokStatus">Checking…</b></div></div><p class="hint">Set APIFY_TOKEN, GEMINI_API_KEY and XAI_API_KEY on your server. Optional: APIFY_ACTOR_ID, GEMINI_MODEL and XAI_MODEL.</p></section>
-<footer>ORBIT SOCIAL <span>Independent research tool · Not affiliated with Instagram</span></footer></main>
-<nav class="bottom"><button class="active" data-tab="home">⌂<small>Home</small></button><button data-tab="explore">⌕<small>Explore</small></button><button data-tab="reels">▣<small>Reels</small></button><button data-tab="insights">⌁<small>Insights</small></button><button data-tab="settings">⚙<small>Settings</small></button></nav></div><script src="/app.js"></script></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f8fa"><meta name="description" content="Orbit app discovery and social client">
+<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg">
+<link rel="stylesheet" href="/style.css"><title>Orbit</title>
+</head>
+<body>
+<div id="store" class="store-shell">
+  <header class="store-top"><div class="play-mark"><span class="play-triangle">▶</span></div><div class="store-brand">Google Play</div><button class="avatar-mini" aria-label="Account">V</button></header>
+  <nav class="store-tabs"><button class="active">For you</button><button>Top charts</button><button>Kids</button><button>Premium</button></nav>
+  <main class="store-content">
+    <div class="store-search"><span>⌕</span><input id="storeSearch" placeholder="Search apps & games" autocomplete="off"><button id="clearSearch" aria-label="Clear">×</button><span class="mic">🎙</span></div>
+    <div id="storeHome">
+      <div class="section-heading"><div><small>DISCOVER</small><h1>Explore apps</h1></div><span class="section-arrow">›</span></div>
+      <div class="promo-card"><div><small>FEATURED APP</small><h2>Make your world<br>more social.</h2><p>Discover the social app experience.</p><button id="promoOpen">Explore Instagram</button></div><div class="promo-art">◎</div></div>
+      <div class="section-row"><h2>Popular apps</h2><span>See more ›</span></div>
+      <div class="app-list" id="appList"></div>
+      <div class="section-row"><h2>Recommended for you</h2><span>More ›</span></div>
+      <div class="recommend-grid"><div class="rec-card"><div class="rec-icon photo">▧</div><b>Photo editor</b><small>Photography</small></div><div class="rec-card"><div class="rec-icon video">▷</div><b>Video player</b><small>Video</small></div><div class="rec-card"><div class="rec-icon music">♫</div><b>Music player</b><small>Music</small></div></div>
+    </div>
+    <div id="searchResults" class="hidden"></div>
+    <div id="listing" class="hidden"></div>
+  </main>
+  <nav class="store-bottom"><button class="selected"><span>⌂</span>Games</button><button><span>▣</span>Apps</button><button><span>⌕</span>Search</button><button><span>♙</span>Books</button></nav>
+</div>
+
+<div id="social" class="social-shell hidden">
+  <header class="ig-header"><button class="wordmark" id="backStore" aria-label="Back to store">orbit<span>•</span></button><button id="headerCreate" class="header-icon">＋</button><div class="ig-title">Instagram</div><div class="header-actions"><button id="headerLikes">♡</button><button id="headerDm">➤</button></div></header>
+  <main id="socialMain" class="social-main">
+    <section id="homePage" class="page">
+      <div class="story-strip" id="stories"></div>
+      <div class="feed-toolbar"><b>For you</b><button id="refreshFeed">↻</button></div>
+      <div id="feedPosts"></div>
+    </section>
+    <section id="reelsPage" class="page hidden"><div class="page-title">Reels <button id="reelsRefresh">↻</button></div><div id="reelsGrid" class="reels-grid"></div></section>
+    <section id="explorePage" class="page hidden"><div class="explore-search"><span>⌕</span><input id="profileSearch" placeholder="Search public Instagram username"></div><div id="exploreContent"><div class="explore-intro"><small>DISCOVER</small><h2>Find your next inspiration.</h2><p>Search a public profile to inspect its available posts and metrics.</p></div><div id="exploreGrid" class="explore-grid"></div></div></section>
+    <section id="activityPage" class="page hidden"><div class="page-title">Notifications</div><div class="notice"><b>Welcome to Orbit</b><p>Your social space is ready. Activity shown here is local demo content.</p></div><div class="notice"><b>Discover public profiles</b><p>Use Explore to search for a public username and load available data.</p></div></section>
+    <section id="profilePage" class="page hidden"><div id="profileContent"></div></section>
+    <section id="messagesPage" class="page hidden"><div class="page-title">Messages</div><div class="empty-state"><div>➤</div><h2>Your messages</h2><p>This prototype does not connect to Instagram DMs.</p></div></section>
+    <section id="insightsPage" class="page hidden"><div class="page-title">Creator insights</div><div class="insight-card"><small>PUBLIC ACCOUNT ANALYSIS</small><h2>Turn public post data into ideas.</h2><p>Load a public profile in Explore, then generate an AI review of the returned posts.</p><button id="generateInsights">Generate AI insights</button><div id="insightOutput"></div></div></section>
+  </main>
+  <nav class="ig-nav"><button data-page="homePage" class="nav-active"><span>⌂</span><small>Home</small></button><button data-page="explorePage"><span>⌕</span><small>Explore</small></button><button data-page="reelsPage"><span>▣</span><small>Reels</small></button><button data-page="activityPage"><span>♡</span><small>Activity</small></button><button data-page="profilePage"><span>♙</span><small>Profile</small></button></nav>
+</div>
+<div id="toast" class="toast hidden"></div>
+<script src="/app.js"></script>
+</body></html>
