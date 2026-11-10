@@ -1,1 +1,1 @@
-{"name":"Orbit Social","short_name":"Orbit","start_url":"/","display":"standalone","background_color":"#f7f8fa","theme_color":"#f7f8fa","description":"App discovery and public social profile explorer","icons":[{"src":"/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
+{"name":"Orbit Social","short_name":"Orbit","start_url":"/","display":"standalone","background_color":"#ffffff","theme_color":"#ffffff","icons":[{"src":"/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}

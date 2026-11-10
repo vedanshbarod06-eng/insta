@@ -1,8 +1,18 @@
-# Orbit Social v2
+# Orbit Social v3
 
-A phone-friendly PWA prototype with a simulated app-store discovery screen and an Instagram-inspired social client.
+Independent mobile-first PWA prototype. It uses an app-discovery entry screen, then a focused social interface.
 
-## Deploy on Render
+## Included
+- Home feed, Reels, Explore/public username lookup, Activity, Profile
+- Professional dashboard and individual Reel Insights tabs
+- API status for Apify, Gemini and optional Grok
+- Public profile/post lookup through an Apify actor
+- AI-generated insight commentary (clearly labelled as simulated/estimated)
+
+## Not included
+No DMs, Story creation, private-account access, Instagram login/session cookies, or private Instagram analytics. Public scraping does not provide reliable audience demographics or first-party Reel analytics.
+
+## Render
 - Build command: `npm install`
 - Start command: `npm start`
 - Runtime: Node
@@ -10,13 +20,13 @@ A phone-friendly PWA prototype with a simulated app-store discovery screen and a
 
 ## Environment variables
 - `APIFY_TOKEN` required for public profile/post lookups
-- `APIFY_ACTOR_ID` optional; defaults to `apify~instagram-scraper`
-- `GEMINI_API_KEY` for Gemini insights
-- `GEMINI_MODEL` optional; defaults to `gemini-2.5-flash`
-- `XAI_API_KEY` optional Grok fallback
-- `XAI_MODEL` optional; defaults to `grok-3-mini`
+- `APIFY_ACTOR_ID` optional; default `apify~instagram-scraper`
+- `GEMINI_API_KEY` optional for Gemini insights
+- `GEMINI_MODEL` optional; default `gemini-2.5-flash`
+- `XAI_API_KEY` optional for Grok
+- `XAI_MODEL` optional; default `grok-3-mini`
 
-The frontend is served from the repository root. Do not upload real API keys to GitHub.
+Set secrets in Render Environment, never in GitHub.
 
-## Limitations
-This is an independent prototype, not Instagram or Google Play. Store content and social interactions are simulated. Public profile/posts are fetched via the configured Apify actor. It does not provide private account access, DMs, private stories, follows, likes, or official Instagram account authentication. API actor input may need adjustment for the actor configured in your Apify account.
+## Important
+The Apify actor input schema can vary. If your selected actor uses a different input format, adjust `runApify()` in `server.js`. This is an independent prototype, not affiliated with Instagram or Google Play.

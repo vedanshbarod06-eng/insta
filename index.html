@@ -1,48 +1,40 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f7f8fa"><meta name="description" content="Orbit app discovery and social client">
-<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg">
-<link rel="stylesheet" href="/style.css"><title>Orbit</title>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff"><meta name="description" content="Orbit Social">
+  <link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg">
+  <link rel="stylesheet" href="/style.css"><title>Orbit Social</title>
 </head>
 <body>
-<div id="store" class="store-shell">
-  <header class="store-top"><div class="play-mark"><span class="play-triangle">▶</span></div><div class="store-brand">Google Play</div><button class="avatar-mini" aria-label="Account">V</button></header>
-  <nav class="store-tabs"><button class="active">For you</button><button>Top charts</button><button>Kids</button><button>Premium</button></nav>
-  <main class="store-content">
-    <div class="store-search"><span>⌕</span><input id="storeSearch" placeholder="Search apps & games" autocomplete="off"><button id="clearSearch" aria-label="Clear">×</button><span class="mic">🎙</span></div>
-    <div id="storeHome">
-      <div class="section-heading"><div><small>DISCOVER</small><h1>Explore apps</h1></div><span class="section-arrow">›</span></div>
-      <div class="promo-card"><div><small>FEATURED APP</small><h2>Make your world<br>more social.</h2><p>Discover the social app experience.</p><button id="promoOpen">Explore Instagram</button></div><div class="promo-art">◎</div></div>
-      <div class="section-row"><h2>Popular apps</h2><span>See more ›</span></div>
-      <div class="app-list" id="appList"></div>
-      <div class="section-row"><h2>Recommended for you</h2><span>More ›</span></div>
-      <div class="recommend-grid"><div class="rec-card"><div class="rec-icon photo">▧</div><b>Photo editor</b><small>Photography</small></div><div class="rec-card"><div class="rec-icon video">▷</div><b>Video player</b><small>Video</small></div><div class="rec-card"><div class="rec-icon music">♫</div><b>Music player</b><small>Music</small></div></div>
-    </div>
-    <div id="searchResults" class="hidden"></div>
-    <div id="listing" class="hidden"></div>
-  </main>
-  <nav class="store-bottom"><button class="selected"><span>⌂</span>Games</button><button><span>▣</span>Apps</button><button><span>⌕</span>Search</button><button><span>♙</span>Books</button></nav>
-</div>
+  <div id="store" class="store-screen">
+    <header class="store-top"><span class="play-mark">▶</span><strong>Orbit Store</strong><span class="avatar-small">O</span></header>
+    <nav class="store-tabs"><span>For you</span><span>Top charts</span><span>Categories</span></nav>
+    <main class="store-content">
+      <label class="store-search">⌕ <input id="storeSearch" placeholder="Search apps & games" value="Orbit Social"></label>
+      <p class="eyebrow">DISCOVER</p><h1>Explore apps</h1>
+      <section class="featured">
+        <div class="app-icon">◎</div><div><h2>Orbit Social</h2><p>Social networking · Independent app</p><small>Public profiles · Reels · Insights</small></div>
+      </section>
+      <button id="openApp" class="primary">Open</button>
+      <p class="store-note">An independent social interface prototype. Not affiliated with Instagram or Google Play.</p>
+    </main>
+  </div>
 
-<div id="social" class="social-shell hidden">
-  <header class="ig-header"><button class="wordmark" id="backStore" aria-label="Back to store">orbit<span>•</span></button><button id="headerCreate" class="header-icon">＋</button><div class="ig-title">Instagram</div><div class="header-actions"><button id="headerLikes">♡</button><button id="headerDm">➤</button></div></header>
-  <main id="socialMain" class="social-main">
-    <section id="homePage" class="page">
-      <div class="story-strip" id="stories"></div>
-      <div class="feed-toolbar"><b>For you</b><button id="refreshFeed">↻</button></div>
-      <div id="feedPosts"></div>
-    </section>
-    <section id="reelsPage" class="page hidden"><div class="page-title">Reels <button id="reelsRefresh">↻</button></div><div id="reelsGrid" class="reels-grid"></div></section>
-    <section id="explorePage" class="page hidden"><div class="explore-search"><span>⌕</span><input id="profileSearch" placeholder="Search public Instagram username"></div><div id="exploreContent"><div class="explore-intro"><small>DISCOVER</small><h2>Find your next inspiration.</h2><p>Search a public profile to inspect its available posts and metrics.</p></div><div id="exploreGrid" class="explore-grid"></div></div></section>
-    <section id="activityPage" class="page hidden"><div class="page-title">Notifications</div><div class="notice"><b>Welcome to Orbit</b><p>Your social space is ready. Activity shown here is local demo content.</p></div><div class="notice"><b>Discover public profiles</b><p>Use Explore to search for a public username and load available data.</p></div></section>
-    <section id="profilePage" class="page hidden"><div id="profileContent"></div></section>
-    <section id="messagesPage" class="page hidden"><div class="page-title">Messages</div><div class="empty-state"><div>➤</div><h2>Your messages</h2><p>This prototype does not connect to Instagram DMs.</p></div></section>
-    <section id="insightsPage" class="page hidden"><div class="page-title">Creator insights</div><div class="insight-card"><small>PUBLIC ACCOUNT ANALYSIS</small><h2>Turn public post data into ideas.</h2><p>Load a public profile in Explore, then generate an AI review of the returned posts.</p><button id="generateInsights">Generate AI insights</button><div id="insightOutput"></div></div></section>
-  </main>
-  <nav class="ig-nav"><button data-page="homePage" class="nav-active"><span>⌂</span><small>Home</small></button><button data-page="explorePage"><span>⌕</span><small>Explore</small></button><button data-page="reelsPage"><span>▣</span><small>Reels</small></button><button data-page="activityPage"><span>♡</span><small>Activity</small></button><button data-page="profilePage"><span>♙</span><small>Profile</small></button></nav>
-</div>
-<div id="toast" class="toast hidden"></div>
-<script src="/app.js"></script>
+  <div id="app" class="app-shell hidden">
+    <header class="app-header">
+      <button class="wordmark" data-page="home">Orbit</button>
+      <div class="header-actions"><button aria-label="Search" data-page="explore">⌕</button><button aria-label="Insights" data-page="dashboard">▥</button></div>
+    </header>
+    <main id="page" class="page"></main>
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button data-page="home" aria-label="Home"><span>⌂</span></button>
+      <button data-page="reels" aria-label="Reels"><span>▣</span></button>
+      <button data-page="explore" aria-label="Explore"><span>⌕</span></button>
+      <button data-page="activity" aria-label="Activity"><span>♡</span></button>
+      <button data-page="profile" aria-label="Profile"><span>◉</span></button>
+    </nav>
+  </div>
+  <div id="toast" role="status" class="toast"></div>
+  <script src="/app.js"></script>
 </body></html>
