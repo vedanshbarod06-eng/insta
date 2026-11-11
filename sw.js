@@ -1,1 +1,5 @@
-const C="orbit-social-v4";self.addEventListener("install",e=>e.waitUntil(caches.open(C).then(c=>c.addAll(["/","/index.html","/style.css","/app.js","/icon.svg"]))));self.addEventListener("fetch",e=>{if(e.request.method!=="GET"||new URL(e.request.url).pathname.startsWith("/api/"))return;e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(x=>{let y=x.clone();caches.open(C).then(c=>c.put(e.request,y));return x;})));});
+const CACHE="orbit-social-v5";
+const SHELL=["/","/index.html","/style.css","/app.js","/icon.svg","/manifest.webmanifest"];
+self.addEventListener("install",event=>event.waitUntil((async()=>{const c=await caches.open(CACHE);await c.addAll(SHELL);await self.skipWaiting();})()));
+self.addEventListener("activate",event=>event.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim();})()));
+self.addEventListener("fetch",event=>{const req=event.request;if(req.method!=="GET"||new URL(req.url).origin!==self.location.origin||new URL(req.url).pathname.startsWith("/api/"))return;event.respondWith((async()=>{try{const fresh=await fetch(req,{cache:"no-store"});if(fresh.ok){const c=await caches.open(CACHE);c.put(req,fresh.clone());}return fresh;}catch(err){const cached=await caches.match(req);if(cached)return cached;throw err;}})());});
